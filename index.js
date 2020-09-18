@@ -12,6 +12,6 @@ app.use((err, req, res, _next) => {
 });
 
 // Listener
-app.listen(port, host, () => {
+app.listen(port, () => {
   console.log(`Your app is up and running! Get some!`);
 });
