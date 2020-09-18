@@ -1,11 +1,9 @@
 const express = require("express");
 const app = express();
 
-const host = 'localhost';
 const port = 3000;
 
 app.use(express.static('public'));
-
 
 // Error handler
 app.use((err, req, res, _next) => {
@@ -15,5 +13,5 @@ app.use((err, req, res, _next) => {
 
 // Listener
 app.listen(port, host, () => {
-  console.log(`Todos is listening on port ${port} of ${host}!`);
+  console.log(`Your app is up and running! Get some!`);
 });
