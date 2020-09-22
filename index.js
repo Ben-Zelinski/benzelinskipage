@@ -9,6 +9,7 @@ const port = 3000;
 
 app.use(express.static('public'));
 
+app.use(bodyParser.urlEncoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.get('/git_activity', (req, res) => {
