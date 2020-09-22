@@ -19,7 +19,8 @@ app.get('/git_activity', (req, res) => {
 // Github Activity Webhook
 app.post('/git_activity', async (req, res) => {
   await MongoClient.connect('mongodb://localhost:27017/git_activity'),
-    const body = req.body;
+    const body = JSON.stringify(req.body);
+    
     (err, client) => {
       if (err) throw err;
 
