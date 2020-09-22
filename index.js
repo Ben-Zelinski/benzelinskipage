@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 
 const bodyParser = require('body-parser');
-const fs = require('fs');
+
 const MongoClient = require('mongodb').MongoClient;
 
 const port = 3000;
@@ -17,9 +17,37 @@ app.get('/git_activity', (req, res) => {
 })
 
 // Github Activity Webhook
-app.post('/git_activity', (req, res) => {
-  fs.writeFileSync('git_activity.json', JSON.stringify(req.body));
-  res.status(200).send();
+app.post('/git_activity', async (req, res) => {
+  await MongoClient.connect('mongodb://localhost:27017/git_activity'),
+    const body = req.body;
+    (err, client) => {
+      if (err) throw err;
+
+      const db = client.db('git_activity');
+      
+      if (body.comment) {
+        db.collection('commits').insert({
+          repo: body.repository.full_name,
+          sender: body.sender.login,
+          created_at: body.comment.created_at,
+          comment: body.comment.body,
+        });
+      } else if (body.pusher) {
+        db.collection('pushes').insert({
+          repo: body.repository.full_name,
+          pusher: body.pusher.name,
+          pushed_at: body.repository.updated_at,
+          commits: body.commits,
+        });
+      } else {
+        db.collection('repos').insert({
+          repo: body.repository.full_name,
+          sender: body.sender.login,
+          updated_at: body.repository.updated_at,
+          action: body.action,
+        });
+      }
+    }
 });
 
 // Error handler
