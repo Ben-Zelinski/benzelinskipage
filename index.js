@@ -20,7 +20,7 @@ app.get('/git_activity', (req, res) => {
 app.post('/git_activity', async (req, res) => {
   await MongoClient.connect('mongodb://localhost:27017/git_activity'),
     const body = JSON.stringify(req.body);
-    
+
     (err, client) => {
       if (err) throw err;
 
@@ -48,6 +48,7 @@ app.post('/git_activity', async (req, res) => {
           action: body.action,
         });
       }
+      console.log(db.repos[0], db.pushes[0], db.commits[0]);
     }
 });
 
