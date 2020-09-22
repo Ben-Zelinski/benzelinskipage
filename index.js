@@ -1,7 +1,9 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const app = express();
 
+const bodyParser = require('body-parser');
+const fs = require('fs');
+const MongoClient = require('mongodb').MongoClient;
 
 const port = 3000;
 
@@ -9,10 +11,14 @@ app.use(express.static('public'));
 
 app.use(bodyParser.json());
 
+app.get('/git_activity', (req, res) => {
+  res.status(202).send('Hello');
+})
+
 // Github Activity Webhook
 app.post('/git_activity', (req, res) => {
-  console.log(req.body);
-  res.status(200).end();
+  fs.writeFileSync('git_activity.json', JSON.stringify(req.body));
+  res.status(200).send();
 });
 
 // Error handler
