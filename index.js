@@ -24,23 +24,23 @@ app.post('/git_activity', async (req, res) => {
 
       const db = client.db('git_activity');
       const body = req.body;
-      console.log(body)
+
       if (body.comment) {
-        db.collection('commits').insert({
+        db.collection('commits').insertOne({
           repo: body.repository.full_name,
           sender: body.sender.login,
           created_at: body.comment.created_at,
           comment: body.comment.body,
         });
       } else if (body.pusher) {
-        db.collection('pushes').insert({
+        db.collection('pushes').insertOne({
           repo: body.repository.full_name,
           pusher: body.pusher.name,
           pushed_at: body.repository.updated_at,
           commits: body.commits,
         });
       } else {
-        db.collection('repos').insert({
+        db.collection('repos').insertOne({
           repo: body.repository.full_name,
           sender: body.sender.login,
           updated_at: body.repository.updated_at,
@@ -48,7 +48,7 @@ app.post('/git_activity', async (req, res) => {
         });
       }
 
-      // console.log(db.repos[0], db.pushes[0], db.commits[0]);
+      console.log(db.repos[0], db.pushes[0], db.commits[0]);
     });
 });
 
