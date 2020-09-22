@@ -24,6 +24,7 @@ app.post('/git_activity', async (req, res) => {
       if (err) throw err;
 
       const db = client.db('git_activity');
+      const body = req.body;
       
       if (body.comment) {
         db.collection('commits').insert({
