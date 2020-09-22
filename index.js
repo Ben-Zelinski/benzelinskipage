@@ -48,8 +48,8 @@ app.post('/git_activity', async (req, res) => {
         });
       }
       console.log(db.repos[0], db.pushes[0], db.commits[0]);
-    }
-}));
+    });
+});
 
 // Error handler
 app.use((err, req, res, _next) => {
