@@ -24,7 +24,7 @@ app.post('/git_activity', async (req, res) => {
 
       const db = client.db('git_activity');
       const body = req.body;
-      
+      console.log(body)
       if (body.comment) {
         db.collection('commits').insert({
           repo: body.repository.full_name,
@@ -47,6 +47,7 @@ app.post('/git_activity', async (req, res) => {
           action: body.action,
         });
       }
+
       console.log(db.repos[0], db.pushes[0], db.commits[0]);
     });
 });
