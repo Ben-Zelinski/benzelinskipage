@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const { MongoClient } = require('mongodb');
+const fs = require('fs');
 const pg = require('./queries');
 
 const app = express();
@@ -32,7 +33,7 @@ app.post('/git_activity', (req, res) => {
           pusher: body.pusher.name,
           pushed_at: body.repository.updated_at,
         });
-
+        fs.writeFileSync(logs.json, db.pushes.find().limit(1).sort({ $natural: -1 }))
         pg.psqlPush(db.pushes.find().limit(1).sort({ $natural: -1 }));
 
         body.commits.forEach((commit) => {
@@ -43,7 +44,7 @@ app.post('/git_activity', (req, res) => {
             modified: commit.modified,
             commited_at: commit.timestamp,
           });
-
+          fs.writeFileSync(logs.json, db.commits.find().limit(1).sort({ $natural: -1 }))
           pg.psqlCommit(db.commits.find().limit(1).sort({ $natural: -1 }));
         });
       } else {
@@ -53,7 +54,7 @@ app.post('/git_activity', (req, res) => {
           updated_at: body.repository.updated_at,
           action: body.action,
         });
-
+        fs.writeFileSync(logs.json, db.repos.find().limit(1).sort({ $natural: -1 }))
         pg.psqlRepo(db.repos.find().limit(1).sort({ $natural: -1 }));
       }
     });
