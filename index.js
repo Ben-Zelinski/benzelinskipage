@@ -1,9 +1,8 @@
 const express = require('express');
-const app = express();
-
 const bodyParser = require('body-parser');
+const { MongoClient } = require('mongodb');
 
-const MongoClient = require('mongodb').MongoClient;
+const app = express();
 
 const port = 3000;
 
@@ -13,31 +12,34 @@ app.use(bodyParser.json());
 
 app.get('/git_activity', (req, res) => {
   res.status(202).send('Hello');
-})
+});
 
 // Github Activity Webhook
-app.post('/git_activity', async (req, res) => {
+app.post('/git_activity', (req, res) => {
   res.status(202).send();
-  await MongoClient.connect('mongodb://localhost:27017/git_activity',
+
+  MongoClient.connect('mongodb://localhost:27017/git_activity',
     (err, client) => {
       if (err) throw err;
 
       const db = client.db('git_activity');
-      const body = req.body;
+      const { body } = req;
 
-      if (body.comment) {
-        db.collection('commits').insertOne({
-          repo: body.repository.full_name,
-          sender: body.sender.login,
-          created_at: body.comment.created_at,
-          comment: body.comment.body,
-        });
-      } else if (body.pusher) {
+      if (body.pusher) {
         db.collection('pushes').insertOne({
           repo: body.repository.full_name,
           pusher: body.pusher.name,
           pushed_at: body.repository.updated_at,
-          commits: body.commits,
+        });
+
+        body.commits.forEach((commit) => {
+          db.collection('commits').insertOne({
+            repo: body.repository.full_name,
+            committer: commit.committer.name,
+            message: commit.message,
+            modified: commit.modified,
+            commited_at: commit.timestamp,
+          });
         });
       } else {
         db.collection('repos').insertOne({
@@ -47,8 +49,6 @@ app.post('/git_activity', async (req, res) => {
           action: body.action,
         });
       }
-
-      console.log(db.repos[0], db.pushes[0], db.commits[0]);
     });
 });
 
