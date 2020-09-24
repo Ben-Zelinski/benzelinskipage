@@ -19,7 +19,6 @@ app.get('/git_activity', (req, res) => {
 // Github Activity Webhook
 app.post('/git_activity', (req, res) => {
 
-
   MongoClient.connect('mongodb://localhost:27017/git_activity',
     (err, client) => {
       if (err) throw err;
@@ -58,9 +57,6 @@ app.post('/git_activity', (req, res) => {
         pg.psqlRepo(db.repos.find().limit(1).sort({ $natural: -1 }));
       }
     });
-
-    
-
 });
 
 // Error handler
