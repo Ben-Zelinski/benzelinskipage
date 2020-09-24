@@ -4,7 +4,7 @@ const pool = new Pool({
   user: 'bziggz',
   host: 'localhost',
   database: 'git_activity',
-  password: 'bziggz'
+  password: 'bziggz',
   port: 3000,
 });
 
