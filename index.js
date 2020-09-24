@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const { MongoClient } = require('mongodb');
+const pg = require('./queries');
 
 const app = express();
 
@@ -32,6 +33,8 @@ app.post('/git_activity', (req, res) => {
           pushed_at: body.repository.updated_at,
         });
 
+        pg.psqlPush(db.pushes.find().limit(1).sort({ $natural: -1 }));
+
         body.commits.forEach((commit) => {
           db.collection('commits').insertOne({
             repo: body.repository.full_name,
@@ -40,6 +43,8 @@ app.post('/git_activity', (req, res) => {
             modified: commit.modified,
             commited_at: commit.timestamp,
           });
+
+          pg.psqlCommit(db.commits.find().limit(1).sort({ $natural: -1 }));
         });
       } else {
         db.collection('repos').insertOne({
@@ -48,8 +53,13 @@ app.post('/git_activity', (req, res) => {
           updated_at: body.repository.updated_at,
           action: body.action,
         });
+
+        pg.psqlRepo(db.repos.find().limit(1).sort({ $natural: -1 }));
       }
     });
+
+    
+
 });
 
 // Error handler
