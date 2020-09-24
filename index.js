@@ -33,8 +33,9 @@ app.post('/git_activity', (req, res) => {
           pusher: body.pusher.name,
           pushed_at: body.repository.updated_at,
         });
-
-        pg.psqlPush(db.pushes.find().limit(1).sort({ $natural: -1 }));
+        
+        const push = db.pushes.find().limit(1).sort({ $natural: -1 });
+        pg.psqlPush(push);
 
         body.commits.forEach((commit) => {
           db.collection('commits').insertOne({
@@ -45,7 +46,7 @@ app.post('/git_activity', (req, res) => {
             commited_at: commit.timestamp,
           });
 
-          pg.psqlCommit(db.commits.find().limit(1).sort({ $natural: -1 }));
+          pg.psqlCommit(db.commits.find().limit(1).sort({ $natural: -1 }), push[0].id);
         });
       } else {
         db.collection('repos').insertOne({
