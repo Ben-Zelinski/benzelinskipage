@@ -5,7 +5,7 @@ const pool = new Pool({
   host: 'localhost',
   database: 'git_activity',
   password: 'bziggz',
-  port: 3000,
+  port: 5432,
 });
 
 const psqlRepo = (mongodoc) => {
