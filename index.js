@@ -18,7 +18,8 @@ app.get('/git_activity', (req, res) => {
 
 // Github Activity Webhook
 app.post('/git_activity', (req, res) => {
-  res.status(202).send(db.pushes.find().limit(1).sort({ $natural: -1 }));
+  res.status(202).send();
+
   MongoClient.connect('mongodb://localhost:27017/git_activity',
     (err, client) => {
       if (err) throw err;
@@ -32,7 +33,7 @@ app.post('/git_activity', (req, res) => {
           pusher: body.pusher.name,
           pushed_at: body.repository.updated_at,
         });
-        res.status(202).send(db.pushes.find().limit(1).sort({ $natural: -1 }));
+
         pg.psqlPush(db.pushes.find().limit(1).sort({ $natural: -1 }));
 
         body.commits.forEach((commit) => {
@@ -43,7 +44,7 @@ app.post('/git_activity', (req, res) => {
             modified: commit.modified,
             commited_at: commit.timestamp,
           });
-          res.status(202).send(db.commits.find().limit(1).sort({ $natural: -1 }));
+
           pg.psqlCommit(db.commits.find().limit(1).sort({ $natural: -1 }));
         });
       } else {
@@ -53,7 +54,7 @@ app.post('/git_activity', (req, res) => {
           updated_at: body.repository.updated_at,
           action: body.action,
         });
-        res.status(202).send(db.repos.find().limit(1).sort({ $natural: -1 }));
+
         pg.psqlRepo(db.repos.find().limit(1).sort({ $natural: -1 }));
       }
     });

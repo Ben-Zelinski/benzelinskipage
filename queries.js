@@ -9,15 +9,21 @@ const pool = new Pool({
 });
 
 const psqlRepo = (mongodoc) => {
-  console.log(mongodoc);
+  mongodoc.forEach((item) => {
+
+  });
 };
 
 const psqlCommit = (mongodoc) => {
-  console.log(mongodoc);
+  mongodoc.forEach((item) => {
+
+  });
 };
 
 const psqlPush = (mongodoc) => {
-  console.log(mongodoc);
+  mongodoc.forEach((item) => {
+
+  });
 };
 
 module.exports = {
