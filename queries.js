@@ -23,5 +23,5 @@ const psqlPush = (mongodoc) => {
 module.exports = {
   psqlRepo,
   psqlCommit,
-  psqlPush
+  psqlPush,
 };
