@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const { MongoClient } = require("mongodb");
-require("dotenv").config();
+require('dotenv').config();
 const port = process.env.PORT;
 const host = process.env.HOST;
 const dbURL = process.env.DATABASE_URL;
@@ -86,5 +86,6 @@ app.use((err, req, res, _next) => {
 
 // Listener
 app.listen(port, host, () => {
+  console.log(process.env.PORT);
   console.log(`benzelinski.com is listening on port ${port} of ${host}!`);
 });
