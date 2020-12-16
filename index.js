@@ -1,73 +1,90 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const { MongoClient } = require('mongodb');
-const fs = require('fs');
-const pg = require('./queries');
-
+const express = require("express");
+const bodyParser = require("body-parser");
+const { MongoClient } = require("mongodb");
+require("dotenv").config();
+const port = process.env.PORT;
+const host = process.env.HOST;
+const dbURL = process.env.DATABASE_URL;
+const TimeAgo = require("javascript-time-ago");
+const en = require("javascript-time-ago/locale/en");
+TimeAgo.addLocale(en);
+const timeAgo = new TimeAgo("en-US");
 const app = express();
 
-const port = 3000;
-
-app.use(express.static('public'));
-
+app.use(express.static("public"));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.get('/git_activity', (req, res) => {
-  res.status(202).send('Hello');
-});
+// Get data from commit database
+// app.get("/", async (req, res) => {
+//   let documents = [];
+//   const client = new MongoClient(dbURL, {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+//   });
+//   try {
+//     await client.connect();
+//     documents = await client
+//       .db("git_activity")
+//       .collection("commits")
+//       .find()
+//       .sort({ $natural: -1 })
+//       .limit(5)
+//       .toArray();
+//   } catch (e) {
+//     console.log(e);
+//   } finally {
+//     await client.close();
+//   }
+// });
 
-// Github Activity Webhook
-app.post('/git_activity', (req, res) => {
-  res.status(202).send();
+// Endpoint for github webhook
+app.post("/git_activity", async (req, res) => {
+  const client = new MongoClient(dbURL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
 
-  MongoClient.connect('mongodb://localhost:27017/git_activity',
-    (err, client) => {
-      if (err) throw err;
+  const jsonObj = req.body;
+  const { repository, sender } = jsonObj;
 
-      const db = client.db('git_activity');
-      const { body } = req;
+  if (jsonObj.commits) {
+    const data = {
+      repo: repository.name,
+      repoPath: repository.full_name,
+      repoUrl: repository.html_url,
+      senderAvatar: sender.avatar_url,
+      senderUrl: sender.html_url,
+      commits: jsonObj.commits,
+    };
 
-      if (body.pusher) {
-        db.collection('pushes').insertOne({
-          repo: body.repository.full_name,
-          pusher: body.pusher.name,
-          pushed_at: body.repository.updated_at,
-        });
-        
-        const push = db.pushes.find().limit(1).sort({ $natural: -1 });
-        pg.psqlPush(push);
+    const commits = data.commits.filter(
+      (commit) => commit.author.username === "bziggz"
+    );
 
-        body.commits.forEach((commit) => {
-          db.collection('commits').insertOne({
-            repo: body.repository.full_name,
-            committer: commit.committer.name,
-            message: commit.message,
-            modified: commit.modified,
-            commited_at: commit.timestamp,
-          });
+    if (commits.length > 0) {
+      data.commits = commits;
 
-          pg.psqlCommit(db.commits.find().limit(1).sort({ $natural: -1 }), push[0].id);
-        });
-      } else {
-        db.collection('repos').insertOne({
-          repo: body.repository.full_name,
-          sender: body.sender.login,
-          updated_at: body.repository.updated_at,
-          action: body.action,
-        });
-
-        pg.psqlRepo(db.repos.find().limit(1).sort({ $natural: -1 }));
+      try {
+        await client.connect();
+        await client.db("git_activity").collection("commits").insertOne(data);
+      } catch (e) {
+        console.log(e);
+      } finally {
+        await client.close();
       }
-    });
+    }
+  }
+  res.status(202).send();
 });
 
 // Error handler
 app.use((err, req, res, _next) => {
-  console.log(err); // Writes more extensive information to the console log
-  res.status(404).send(err.message);
+  console.log("Error");
+  res.status(404).send("There has been an error. Oops!");
 });
 
 // Listener
-app.listen(port, () => {
-  console.log(`Your app is up and running! Get some!`);
+app.listen(port, host, () => {
+  console.log(`benzelinski.com is listening on port ${port} of ${host}!`);
 });

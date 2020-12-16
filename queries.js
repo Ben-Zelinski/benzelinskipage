@@ -8,6 +8,10 @@ const pool = new Pool({
   port: 5432,
 });
 
+const createRecord = (table, ...columns) => {
+  pool.query('INSERT INTO $1 ()')
+}
+
 const psqlRepo = (mongodoc) => {
   mongodoc.forEach((item) => {
     pool.query('INSERT INTO repos (document_id, received_at, repo_name) VALUES ($1, $2, $3)', [item.id, item.updated_at, item.repo]);
