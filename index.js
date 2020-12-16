@@ -40,41 +40,41 @@ app.use(bodyParser.json());
 
 // Endpoint for github webhook
 app.post("/git_activity", async (req, res) => {
-  const client = new MongoClient(dbURL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
+  // const client = new MongoClient(dbURL, {
+  //   useNewUrlParser: true,
+  //   useUnifiedTopology: true,
+  // });
 
-  const jsonObj = req.body;
-  const { repository, sender } = jsonObj;
+  // const jsonObj = req.body;
+  // const { repository, sender } = jsonObj;
 
-  if (jsonObj.commits) {
-    const data = {
-      repo: repository.name,
-      repoPath: repository.full_name,
-      repoUrl: repository.html_url,
-      senderAvatar: sender.avatar_url,
-      senderUrl: sender.html_url,
-      commits: jsonObj.commits,
-    };
+  // if (jsonObj.commits) {
+  //   const data = {
+  //     repo: repository.name,
+  //     repoPath: repository.full_name,
+  //     repoUrl: repository.html_url,
+  //     senderAvatar: sender.avatar_url,
+  //     senderUrl: sender.html_url,
+  //     commits: jsonObj.commits,
+  //   };
 
-    const commits = data.commits.filter(
-      (commit) => commit.author.username === "bziggz"
-    );
+  //   const commits = data.commits.filter(
+  //     (commit) => commit.author.username === "bziggz"
+  //   );
 
-    if (commits.length > 0) {
-      data.commits = commits;
+  //   if (commits.length > 0) {
+  //     data.commits = commits;
 
-      try {
-        await client.connect();
-        await client.db("git_activity").collection("commits").insertOne(data);
-      } catch (e) {
-        console.log(e);
-      } finally {
-        await client.close();
-      }
-    }
-  }
+  //     try {
+  //       await client.connect();
+  //       await client.db("git_activity").collection("commits").insertOne(data);
+  //     } catch (e) {
+  //       console.log(e);
+  //     } finally {
+  //       await client.close();
+  //     }
+  //   }
+  // }
   res.status(202).send();
 });
 
