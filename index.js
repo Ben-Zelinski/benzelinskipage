@@ -59,7 +59,7 @@ app.post("/git_activity", async (req, res) => {
     };
 
     const commits = data.commits.filter(
-      (commit) => commit.author.username === "bziggz"
+      (commit) => commit.author.username === "Benjamin Zelinski"
     );
 
     if (commits.length > 0) {
