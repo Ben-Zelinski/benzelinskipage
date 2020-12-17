@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const { MongoClient } = require("mongodb");
+const fs = require("fs");
 require('dotenv').config();
 const port = process.env.PORT;
 const host = process.env.HOST;
@@ -57,7 +58,7 @@ app.post("/git_activity", async (req, res) => {
       senderUrl: sender.html_url,
       commits: jsonObj.commits,
     };
-
+fs.writeFileSync('test', data)
     const commits = data.commits.filter(
       (commit) => commit.author.username === "Benjamin Zelinski"
     );
@@ -86,6 +87,5 @@ app.use((err, req, res, _next) => {
 
 // Listener
 app.listen(port, host, () => {
-  console.log(process.env.PORT);
   console.log(`benzelinski.com is listening on port ${port} of ${host}!`);
 });
