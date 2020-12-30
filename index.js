@@ -12,36 +12,36 @@ TimeAgo.addLocale(en);
 const timeAgo = new TimeAgo("en-US");
 const app = express();
 
-app.use(express.static("public"));
+app.use(express.static("."));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // Get data from commit database
-// app.get("/", async (req, res) => {
-//   let documents = [];
-//   const client = new MongoClient(dbURL, {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-//   });
-//   try {
-//     await client.connect();
-//     documents = await client
-//       .db("git_activity")
-//       .collection("commits")
-//       .find()
-//       .sort({ $natural: -1 })
-//       .limit(5)
-//       .toArray();
-//   } catch (e) {
-//     console.log(e);
-//   } finally {
-//     await client.close();
-//   }
-// });
+app.get("/", async (req, res) => {
+  let documents = [];
+  const client = new MongoClient(dbURL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
+  try {
+    await client.connect();
+    documents = await client
+      .db("git_activity")
+      .collection("commits")
+      .find()
+      .sort({ $natural: -1 })
+      .limit(5)
+      .toArray();
+  } catch (e) {
+    console.log(e);
+  } finally {
+    await client.close();
+  }
+});
 
 // Endpoint for github webhook
 app.post("/git_activity", async (req, res) => {
-  const client = new MongoClient(dbURL, {
+    const client = new MongoClient(dbURL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
@@ -49,7 +49,7 @@ app.post("/git_activity", async (req, res) => {
   const jsonObj = req.body;
   const { repository, sender } = jsonObj;
 
-  if (jsonObj.commits) {
+  if (!repository.private && jsonObj.commits) {
     const data = {
       repo: repository.name,
       repoPath: repository.full_name,
@@ -58,9 +58,9 @@ app.post("/git_activity", async (req, res) => {
       senderUrl: sender.html_url,
       commits: jsonObj.commits,
     };
-fs.writeFileSync('test', data)
+
     const commits = data.commits.filter(
-      (commit) => commit.author.username === "Benjamin Zelinski"
+      (commit) => commit.committer.name === "Benjamin Zelinski"
     );
 
     if (commits.length > 0) {
@@ -68,7 +68,7 @@ fs.writeFileSync('test', data)
 
       try {
         await client.connect();
-        await client.db("git_activity").collection("commits").insertOne(data);
+        await client.db('git_activity').collection('commits').insertOne(data);
       } catch (e) {
         console.log(e);
       } finally {
