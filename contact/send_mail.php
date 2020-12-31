@@ -9,8 +9,8 @@ if (isset($_POST['name']) && isset($_POST['email']) && filter_var($_POST['email'
     $name = $_POST['name'];
     $email = $_POST['email'];
     $select_subject = $_POST['subject'];
-    $services = ($_POST['services'] <> '') ? implode(',', $_POST['services']) : '-';
-    $project_class = ($_POST['project_class'] <> '') ? $_POST['project_class'] : '-';
+    // $services = ($_POST['services'] <> '') ? implode(',', $_POST['services']) : '-';
+    // $project_class = ($_POST['project_class'] <> '') ? $_POST['project_class'] : '-';
     $message = $_POST['message'];
     
     // Prefedined Variables  
@@ -21,8 +21,8 @@ if (isset($_POST['name']) && isset($_POST['email']) && filter_var($_POST['email'
     $content .= 'Name: ' . $name . "\r\n" ;
     $content .= 'Email: ' . $email . "\r\n" ;
     $content .= 'Subject: ' . $select_subject . "\r\n" ;
-    $content .= 'Services: ' . $services . "\r\n" ;
-    $content .= 'Project Class: ' . $project_class . "\r\n" ;
+    // $content .= 'Services: ' . $services . "\r\n" ;
+    // $content .= 'Project Class: ' . $project_class . "\r\n" ;
     $content .= 'Message: ' . $message . "\r\n" ;
     
     // Detect & prevent header injections
