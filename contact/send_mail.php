@@ -1,7 +1,7 @@
 <?php
 
 // Replace with your email 
-$mail_to = 'your_email@your_domain.com';
+$mail_to = 'bziggz@gmail.com';
 
 if (isset($_POST['name']) && isset($_POST['email']) && filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) && isset($_POST['subject']) && isset($_POST['message']))
 {
@@ -14,7 +14,7 @@ if (isset($_POST['name']) && isset($_POST['email']) && filter_var($_POST['email'
     $message = $_POST['message'];
     
     // Prefedined Variables  
-    $subject = 'BERG Notification Mailer: Message from ' . $name . '!';
+    $subject = 'BZ Notification Mailer: Message from ' . $name . '!';
     
     // Collecting all content in $content
     $content = 'Contact Details:' . "\r\n" ;
