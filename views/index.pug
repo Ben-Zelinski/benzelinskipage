@@ -22,5 +22,90 @@ html(lang="en")
     link(href="assets/css/color_red.css" rel="stylesheet" type="text/css")
   body#page-top
     // Section - Home Start
-    section#home
-    .home-bg-parallax.bg-gray-dark.overflow-hidden.p-0.w-100
+    section#home.home-bg-parallax.bg-gray-dark.overflow-hidden.p-0.w-100
+      .bg-parallax.bg-overlay-black-5
+      .h-100.left-0.position-absolute.top-0.w-100
+        .container.h-100
+          .row.align-items-center.h-100.justify-content-center
+            .col-lg-9.text-center
+              .font-alt.font-w-600.letter-spacing-2.m-0.mt-3.opacity-9-5.text-uppercase.text-white.title-sm-extra-large-2.title-extra-large-4 I'm Ben Zelinski
+              .d-block.font-alt.mt-2.opacity-9-5.text-white.title-sm-extra-large.title-extra-large-3 
+                | Below Website Under Construction
+              .d-block.font-alt.mb-2.mt-2.opacity-9-5.text-white.text-extra-large
+                | Co-Creator of Campion
+              a(href="#profile").page-scroll.btn.box-shadow-wide.btn-base-color.btn-large.m-0.mt-4
+                | About Me
+              a(href="#contact").page-scroll.btn.box-shadow-wide.btn-base-color.btn-large.m-0.mt-4
+                | Contact Me
+        // Navigation Start
+    nav#navigation.navbar.navbar-dark.navbar-expand-lg.bg-dark
+      .container
+        //.navbar-header
+        .navbar-header.d-lg-none
+          a(href="#page-top").navbar-brand.page-scroll
+            | Ben Zelinski      
+          button(class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-berg" aria-controls="navbar-berg" aria-expanded="false" aria-label="Toggle navigation")
+            span.navbar-toggler-icon 
+        //.navbar-collapse          
+        div#navbar-berg.navbar-collapse.collapse.justify-content-center
+          ul.navbar-nav
+            li.nav-item
+              a(href="#home").nav-link.page-scroll
+                | Home
+            li.nav-item
+              a(href="#profile").nav-link.page-scroll
+                | Profile
+            li.nav-item
+              a(href="#portfolio").nav-link.page-scroll
+                | Portfolio
+            li.nav-item
+              a(href="#resume").nav-link.page-scroll
+                | Resume
+            li.nav-item
+              a(href="#references").nav-link.page-scroll
+                | References
+            li.nav-item
+              a(href="#git").nav-link.page-scroll
+                | Git Activity
+            li.nav-item
+              a(href="#knowledge").nav-link.page-scroll
+                | Knowledge base
+            li.nav-item
+              a(href="#contact").nav-link.page-scroll
+                | Contact Me
+    // Profile Start
+    section#profile.bg-gray-dark-2.overflow-hidden.py-0
+      .container
+        .row
+          div(data-mh="mh-col-profile").col-xl-7.col-profile
+            .pr-lg-4
+              h3.font-alt.font-w-600.letter-spacing-2.title-extra-large.text-uppercase.text-white
+                | Hello, My Name is Ben Zelinski!
+              p.mt-4.text-large.text-white
+                | I'm a Software Engineer living in Cleveland, OH. I'm currently seeking remote employment, or to relocate for the right situation.
+              span.bg-base-color.mt-4.sep-line-medium-thick
+              p.mt-4.text-gray.text-large
+                | I'm one of three co-creators of Campion, an edge-based, drop-in circuit breaker for distributed network services.
+              p.mt-3.text-gray.text-large
+                | My ability to quickly adapt and excel has given me the opportunity to explore and thrive in a wide variety of skills and industries. I've run a million-dollar Napa Valley wine program, co-founded a bakery in the heart of NYC, made wine, and been an ASE-certified mechanic.
+                | Throughout these ventures, I've repeatedly been tasked with training and leading teams, as well as developing or revamping internal systems to improve efficiency and productivity. My 'casually professional' approach to leadership allows me to engage with, protect, and motivate those around me.
+                | My software development philosophy is similarly people-centric. I pride myself on being a team player, which means writing code that is resilient, easy to parse and maintain, and most importantly, written with an eye towards the overall team goals. </p>
+
+              .row.pt-5
+                .col-md-6
+                  span.d-block.font-alt.letter-spacing-2.text-extra-large.text-uppercase.text-white
+                    | Contact Details:
+                  ul.list-unstyled.mt-2.text-gray.text-large
+                    li Ben Zelinski
+                    li.pt-2 bziggz@gmail.com
+                    li.pt-2
+                      a(href="https://github.com/bziggz") Github
+                    li.pt-2
+                      a(href="https://www.linkedin.com/in/ben-zelinski/") LinkedIn
+                    li.pt-2
+                      a(href="page-top")www.benzelinski.com
+                .col-md-6
+                  a(href="#").btn.box-shadow-wide.btn-base-color.btn-large.mt-4.mt-md-5
+                    | Download Resume       
+          div(data-mh="mh-col-profile").col-xl-5.d-none.d-xl-block.position-relative
+            img(src="assets/images/profile-picture-1.jpg" alt="").img-fluid.left-0.position-absolute.top-0.w-100
