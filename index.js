@@ -2,17 +2,24 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const { MongoClient } = require("mongodb");
 const fs = require("fs");
+
 require('dotenv').config();
 const port = process.env.PORT;
 const host = process.env.HOST;
 const dbURL = process.env.DATABASE_URL;
+
 const TimeAgo = require("javascript-time-ago");
 const en = require("javascript-time-ago/locale/en");
 TimeAgo.addLocale(en);
 const timeAgo = new TimeAgo("en-US");
+
 const app = express();
 
-app.use(express.static("."));
+app.set('views', './views');
+app.set('view engine', 'pug');
+
+app.use(express.static('public'));
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -37,6 +44,8 @@ app.get("/", async (req, res) => {
   } finally {
     await client.close();
   }
+
+  res.render('index', { documents, timeAgo });
 });
 
 // Endpoint for github webhook
