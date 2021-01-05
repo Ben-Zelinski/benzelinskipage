@@ -19,7 +19,7 @@ app.set('views', './views');
 app.set('view engine', 'pug');
 
 app.use(express.static('views'));
-app.use(express.static('assets'));
+app.use(express.static('.'));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
