@@ -1,0 +1,512 @@
+@import "reset.css";
+
+/*******************
+  General
+******************/
+
+@keyframes MoveUpDown {
+  0% {
+    bottom: 50px;
+  }
+  50% {
+    bottom: 65px;
+  }
+  100% {
+    bottom: 50px;
+  }
+}
+
+body {
+  font: normal 15px/150% "Fira Mono", Helvetica, sans-serif;
+  padding: 0;
+  margin: 0;
+  z-index: -3;
+  position: relative;
+  color: #fff;
+  height: 100vh;
+}
+
+.fixed {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  width: 100%;
+}
+
+.upside-down {
+  transform: scaleY(-1);
+}
+
+.gradient-hover {
+  background: #fff;
+  transition: background-color 0.5s ease;
+  border-bottom: 1px solid #000;
+  padding: 0 5px;
+}
+
+.gradient-hover:hover {
+  background: #000;
+}
+
+.gradient-hover a {
+  color: #000;
+}
+
+.gradient-hover a:hover {
+  color: #fff;
+}
+
+.center {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 50px;
+}
+
+.move {
+  animation: MoveUpDown 2s linear infinite;
+}
+
+a {
+  text-decoration: none;
+}
+
+/*******************
+  Header
+******************/
+
+header {
+  background-color: #000000;
+  overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20px 20px 16px 28px;
+  position: fixed;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+  transition: background-color 0.5s ease;
+}
+
+header .icon {
+  visibility: hidden;
+  margin-top: 6px;
+}
+
+header .icon.show {
+  visibility: visible;
+}
+
+header .icon a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+header .icon img {
+  width: 100%;
+}
+
+header .blog {
+  display: flex;
+  width: 50%;
+  justify-content: space-around;
+}
+
+header .blog a {
+  color: #fff;
+}
+
+/*******************
+  Landing Page
+******************/
+
+#homepage {
+  width: 100%;
+  position: relative;
+  padding: 0;
+  margin: 0;
+}
+
+#homepage .info {
+  padding: 0 20px;
+  position: relative;
+  z-index: 20;
+}
+
+#homepage .info h1 {
+  font-size: 25px;
+  line-height: 150%;
+  font-weight: 100;
+  padding-bottom: 10px;
+
+}
+
+#homepage .info p {
+  margin-bottom: 10px;
+}
+
+#homepage .info p a {
+  padding: 0 5px;
+  color: #fff;
+  text-decoration: underline;
+}
+
+.emphasize {
+  background-color: #000;
+}
+
+#homepage .info span + span:hover {
+  background-color: white;
+  color: #000000;
+}
+
+#homepage .info p span + span a {
+  border-bottom: 1px solid #ccc;
+}
+
+/*******************
+  particles.js container
+******************/
+
+#particles-js {
+  width: 100%;
+  height: 100%;
+  background-image: url("../images/snow-disc.jpg");
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+}
+
+/*******************
+  Arrow
+******************/
+
+.arrow {
+  width: 40px;
+  height: 30px;
+  text-indent: -9999px;
+}
+
+.arrow .white-arrow,
+.arrow .black-arrow {
+  width: 200%;
+  height: 200%;
+  border: none;
+}
+
+.arrow .white-arrow {
+  display: block;
+  background: url("../images/down-arrow-white.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.arrow .black-arrow {
+  display: block;
+  background: url("../images/down-arrow-black.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/*******************
+  Main Content
+******************/
+
+.sectional {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column-reverse;
+  margin-bottom: 20px;
+}
+
+.catherine {
+  /*transform: scaleX(-1);
+  filter: FlipH;*/
+}
+
+main {
+  position: absolute;
+  top: 100vh;
+  background-color: #fff;
+  width: 100vw;
+  box-sizing: border-box;
+  padding: 72px 30px 30px;
+  color: #000;
+  z-index: 30;
+  -webkit-transition: -webkit-transform 0.6s ease-in-out;
+  transition: transform 0.6s ease-in-out;
+  overflow: hidden;
+}
+
+main figure {
+  text-align: left;
+}
+
+main img {
+  width: 100%;
+  border-radius: 20px;
+}
+
+main h2 {
+  font-size: 25px;
+  padding-bottom: 20px;
+}
+
+main h3 {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+main p {
+  font-size: 16px;
+  line-height: 150%;
+  margin-bottom: 10px;
+}
+
+main a,
+main li {
+  color: #000;
+  font-size: 16px;
+}
+
+main li,
+main h3 {
+  margin-bottom: 15px;
+}
+
+main ul {
+  padding-bottom: 20px;
+}
+
+main .footer,
+main .footer a {
+  font-size: 10px;
+}
+
+.about figure {
+  max-width: 500px;
+}
+
+.max figure {
+  max-width: 550px;
+}
+
+.frame-container {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  padding-bottom: 56.25%;
+  width: 100%;
+}
+
+.frame-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.text {
+  padding-top: 15px;
+}
+
+/*******************
+  Footer
+******************/
+
+footer {
+  font-size: 10px;
+}
+
+/*******************
+  Media Queries
+******************/
+
+@media (min-width: 375px) {
+  body {
+    font-size: 18px;
+  }
+
+  #homepage .info h1 {
+    font-size: 32px;
+  }
+}
+
+@media (min-width: 500px) {
+  body {
+    font-size: 20px;
+    line-height: 160%;
+  }
+
+  #homepage .info h1 {
+    font-size: 36px;
+  }
+
+  #homepage .info p {
+    margin-bottom: 20px;
+  }
+}
+
+@media (min-width: 671px) {
+  /*******************
+    General
+  ******************/
+
+  .wait-cursor {
+    cursor: wait;
+  }
+
+  .indicator:after {
+    content: "\27F6";
+    display: inline-block;
+    margin-left: 10px;
+  }
+
+  .clearfix:after {
+    content: " "; /* Older browser do not support empty content */
+    visibility: hidden;
+    display: block;
+    height: 0;
+    clear: both;
+  }
+
+  /*******************
+    Main
+  ******************/
+
+  header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  header,
+  main {
+    padding-left: 10vw;
+    padding-right: 10vw;
+  }
+
+  #homepage .info {
+    max-width: 100%;
+    margin: 0 10vw 0 10vw;
+    padding: 30px 0 0;
+    justify-content: center;
+  }
+
+  #homepage .info p a {
+    border-bottom: 1px solid #ccc;
+    text-decoration: none;
+  }
+
+  #homepage .info a:hover {
+    color: #0f062f;
+  }
+
+  #homepage .info h1 {
+    padding-bottom: 5%;
+  }
+
+  .white-back:hover {
+    background-color: #fff;
+  }
+
+  /*******************
+    Main Overlay
+  ******************/
+
+  main h2,
+  main h3 {
+    margin-bottom: 20px;
+    font-family: "Fira Mono", Helvetica, sans-serif;
+  }
+
+  .sectional {
+    flex-direction: row;
+  }
+
+  main article {
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  main figure {
+    margin-left: 20px;
+    font-size: 20px;
+  }
+
+  main p {
+    max-width: 460px;
+    font-size: 18px;
+    line-height: 160%;
+    margin-bottom: 20px;
+  }
+
+  main ul li {
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 670px) {
+  span:first-child .hover-effect:hover {
+    -webkit-text-fill-color: white !important;
+  }
+
+  header .blog {
+    width: 100%;
+  }
+}
+
+@media (min-width: 1441px) {
+  body {
+    font-size: 1.5em;
+  }
+
+  header .blog {
+    margin-top: 25px;
+  }
+
+  header .icon {
+    margin-top: 20px;
+  }
+
+  #homepage .info {
+    max-width: 1100px;
+    padding-top: 100px;
+  }
+
+  #homepage .info h1 {
+    font-size: 1.8em;
+  }
+
+  .arrow .white-arrow,
+  .arrow {
+    width: 80px;
+    height: 80px;
+  }
+
+  main {
+    padding-top: 170px;
+  }
+
+  main h2,
+  main h3 {
+    font-size: 1.2em;
+  }
+
+  main p,
+  main a,
+  main li {
+    font-size: 0.9em;
+  }
+
+  main p {
+    max-width: 960px;
+  }
+
+  main figure {
+    max-width: 720px;
+  }
+}
