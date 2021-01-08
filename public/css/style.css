@@ -299,21 +299,45 @@ main .footer a {
   font-size: 10px;
 }
 
-main button {
-  background-color: #ff7700;
-  border-radius: 5px;
-  border-width: 2px;
-}
-
-main button .gradient-hover {
-  padding: 0px;
-  border-color: #ff7700;
-}
-
-main button .gradient-hover a {
-  background-color: #ff7700;
-  color: #fff;
-  font-size: 1.5em;
+.campion-button {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ff7700), color-stop(1, #ff4f0a) );
+	background:-moz-linear-gradient( center top, #ff7700 5%, #ff4f0a 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff7700', endColorstr='#ff4f0a');
+	background-color:#ff7700;
+	-webkit-border-top-left-radius:15px;
+	-moz-border-radius-topleft:15px;
+	border-top-left-radius:15px;
+	-webkit-border-top-right-radius:15px;
+	-moz-border-radius-topright:15px;
+	border-top-right-radius:15px;
+	-webkit-border-bottom-right-radius:15px;
+	-moz-border-radius-bottomright:15px;
+	border-bottom-right-radius:15px;
+	-webkit-border-bottom-left-radius:15px;
+	-moz-border-radius-bottomleft:15px;
+	border-bottom-left-radius:15px;
+text-indent:0;
+	border:1px solid #d6bcd6;
+	display:inline-block;
+	color:#ffffff;
+	font-family: "Fira Mono";
+	font-size:1.25em;
+	font-weight:normal;
+	font-style:normal;
+  height:50px;
+	line-height:50px;
+  width:100%;
+	text-decoration:none;
+	text-align:center;
+	text-shadow:0px 1px 0px #43494d;
+}.campion-button:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ff4f0a), color-stop(1, #ff7700) );
+	background:-moz-linear-gradient( center top, #ff4f0a 5%, #ff7700 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff4f0a', endColorstr='#ff7700');
+	background-color:#ff4f0a;
+}.campion-button:active {
+	position:relative;
+	top:1px;
 }
 
 .about {
@@ -349,7 +373,7 @@ main button .gradient-hover a {
 }
 
 .section-logo {
-  width: 5em;
+  width: 7em;
   border-radius: 0px;
 }
 
@@ -391,6 +415,10 @@ footer {
 
   .about figure {
     margin: 1em;
+  }
+
+  .campion-button {
+    font-size: 1em;
   }
 }
 
@@ -513,7 +541,7 @@ footer {
   }
 
   .project figure {
-    margin-top: 8em;
+    margin-top: 10em;
   }
 }
 
@@ -580,5 +608,9 @@ footer {
 
   .project figure {
     margin-top: 12em;
+  }
+
+  .campion-button {
+    font-size: 1em;
   }
 }
