@@ -299,6 +299,23 @@ main .footer a {
   font-size: 10px;
 }
 
+main button {
+  background-color: #ff7700;
+  border-radius: 5px;
+  border-width: 2px;
+}
+
+main button .gradient-hover {
+  padding: 0px;
+  border-color: #ff7700;
+}
+
+main button .gradient-hover a {
+  background-color: #ff7700;
+  color: #fff;
+  font-size: 1.5em;
+}
+
 .about {
   margin-top: 3em;
 }
@@ -336,6 +353,10 @@ main .footer a {
   border-radius: 0px;
 }
 
+.campion-link {
+  text-align: center;
+}
+
 /*******************
   Footer
 ******************/
@@ -353,8 +374,23 @@ footer {
     font-size: 18px;
   }
 
+  #homepage .info {
+    width: 75%;
+    line-height: 1.75em;
+    text-align: center;
+  }
+
   #homepage .info h1 {
     font-size: 32px;
+    margin-bottom: .5em;
+  }
+
+  .project figure {
+    margin-top: 0px;
+  }
+
+  .about figure {
+    margin: 1em;
   }
 }
 
@@ -405,6 +441,10 @@ footer {
     justify-content: space-between;
   }
 
+  header a {
+    margin-right: 1em;
+  }
+
   header,
   main {
     padding-left: 10vw;
@@ -416,6 +456,7 @@ footer {
     margin: 0 10vw 0 10vw;
     padding: 30px 0 0;
     justify-content: center;
+    text-align: left;
   }
 
   #homepage .info p a {
@@ -469,6 +510,10 @@ footer {
 
   main ul li {
     margin-bottom: 10px;
+  }
+
+  .project figure {
+    margin-top: 8em;
   }
 }
 
@@ -531,5 +576,9 @@ footer {
 
   main figure {
     max-width: 720px;
+  }
+
+  .project figure {
+    margin-top: 12em;
   }
 }
