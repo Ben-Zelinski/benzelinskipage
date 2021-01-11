@@ -431,12 +431,12 @@ footer {
     font-size: 0.85em;
   }
 
-  header .blog {
-    font-size: 0.85em;
+  .fixed {
+    top: 15px;
   }
 
-  #particles-js {
-    top: 15px;
+  header .blog {
+    font-size: 0.85em;
   }
 }
 
