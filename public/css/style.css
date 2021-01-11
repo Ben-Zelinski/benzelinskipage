@@ -420,6 +420,23 @@ footer {
   .campion-button {
     font-size: 1em;
   }
+
+  .fixed {
+    top: 20px;
+  }
+
+  .arrow {
+    display: none;
+  }
+
+  .scroll {
+    display: block;
+    padding-top: 60px;
+  }
+
+  header .blog {
+    font-size: 0.85em;
+  }
 }
 
 @media (min-width: 500px) {
@@ -434,6 +451,10 @@ footer {
 
   #homepage .info p {
     margin-bottom: 20px;
+  }
+
+  .arrow {
+    display: block;
   }
 }
 
@@ -504,6 +525,9 @@ footer {
     background-color: #fff;
   }
 
+  .scroll {
+    display: none;
+  }
   /*******************
     Main Overlay
   ******************/
