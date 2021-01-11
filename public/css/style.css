@@ -398,6 +398,10 @@ footer {
     font-size: 18px;
   }
 
+  #homepage {
+    top: -20px;
+  }
+
   #homepage .info {
     width: 75%;
     line-height: 1.75em;
@@ -509,6 +513,10 @@ footer {
     padding-right: 10vw;
   }
 
+  #homepage {
+    margin: 0;
+  }
+
   #homepage .info {
     max-width: 100%;
     margin: 0 10vw 0 10vw;
@@ -529,6 +537,7 @@ footer {
   #homepage .info h1 {
     padding-bottom: 5%;
   }
+
 
   .white-back:hover {
     background-color: #fff;
