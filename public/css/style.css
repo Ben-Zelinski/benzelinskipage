@@ -399,7 +399,7 @@ footer {
   }
 
   #homepage {
-    top: -20px;
+    top: -30px;
   }
 
   #homepage .info {
@@ -431,7 +431,7 @@ footer {
 
   .scroll {
     display: block;
-    padding-top: 40px;
+    padding-top: 20px;
     font-size: 0.85em;
   }
 
