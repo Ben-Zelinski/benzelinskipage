@@ -427,7 +427,8 @@ footer {
 
   .scroll {
     display: block;
-    padding-top: 60px;
+    padding-top: 40px;
+    font-size: 0.85em;
   }
 
   header .blog {
@@ -435,7 +436,7 @@ footer {
   }
 
   #particles-js {
-    top: 20px;
+    top: 15px;
   }
 }
 
@@ -459,6 +460,10 @@ footer {
 
   .scroll {
     display: none;
+  }
+
+  header .blog {
+    font-size: 0.85em;
   }
 }
 
