@@ -421,10 +421,6 @@ footer {
     font-size: 1em;
   }
 
-  .fixed {
-    top: 20px;
-  }
-
   .arrow {
     display: none;
   }
@@ -436,6 +432,10 @@ footer {
 
   header .blog {
     font-size: 0.85em;
+  }
+
+  #particles-js {
+    top: 20px;
   }
 }
 
@@ -455,6 +455,10 @@ footer {
 
   .arrow {
     display: block;
+  }
+
+  .scroll {
+    display: none;
   }
 }
 
