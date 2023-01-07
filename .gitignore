@@ -1,4 +1,4 @@
 ./node_modules
-.vs_code
+.vs_code/*
 .DS_Store
 .env
