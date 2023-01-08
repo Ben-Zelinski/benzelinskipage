@@ -148,11 +148,11 @@ header .blog a img {
   line-height: 150%;
   font-weight: 100;
   padding-bottom: 10px;
-  margin-top: 3em;
+  margin-top: 1em;
 }
 
 #homepage .info p {
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 #homepage .info p a {
@@ -163,6 +163,10 @@ header .blog a img {
 
 .emphasize {
   text-shadow: 2px 2px 10px #000; 
+}
+
+.italic {
+  font: italic 30px/300% "Fira Sans", Helvetica, sans-serif;
 }
 
 #homepage .info span + span:hover {
@@ -382,6 +386,32 @@ text-indent:0;
 }
 
 /*******************
+  Stack Table
+*******************/
+
+.stack-table {
+  margin-top: 10px;
+  margin-bottom: 50px;
+  text-align: center
+}
+
+.stack-table thead td {
+  font-size: 1em;
+  font-style: italic;
+  padding: 20px 0px;
+}
+
+.stack-table tbody td {
+  padding-bottom: 25px;
+}
+
+td {
+  font-size: .75em;
+  vertical-align: top;
+}
+
+
+/*******************
   Footer
 ******************/
 
@@ -520,7 +550,6 @@ footer {
   #homepage .info {
     max-width: 100%;
     margin: 0 10vw 0 10vw;
-    padding: 30px 0 0;
     justify-content: center;
     text-align: left;
   }
