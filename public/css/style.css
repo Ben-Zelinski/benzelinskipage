@@ -148,7 +148,7 @@ header .blog a img {
   line-height: 150%;
   font-weight: 100;
   padding-bottom: 10px;
-  padding-top: 10vh;
+  padding-top: 20vh;
 }
 
 #homepage .info p {
@@ -166,7 +166,7 @@ header .blog a img {
 }
 
 .italic {
-  font: italic 12px/120% "Fira Sans", Helvetica, sans-serif;
+  font: italic 15px/150% "Fira Sans", Helvetica, sans-serif;
 }
 
 #homepage .info span + span:hover {
