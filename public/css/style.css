@@ -166,7 +166,7 @@ header .blog a img {
 }
 
 .italic {
-  font: italic 15px/150% "Fira Sans", Helvetica, sans-serif;
+  font: italic 20px/200% "Fira Sans", Helvetica, sans-serif;
 }
 
 #homepage .info span + span:hover {
