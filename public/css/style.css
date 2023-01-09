@@ -633,6 +633,10 @@ footer {
   header .blog {
     width: 100%;
   }
+  .stack-table {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 @media (min-width: 1441px) {
