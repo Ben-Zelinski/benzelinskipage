@@ -452,6 +452,14 @@ footer {
     margin: 1em;
   }
 
+  .stack-table {
+    max-width: 100%;
+  }
+
+  .stack-table th, .stack-table td {
+    display: inline-block;
+  }
+
   .campion-button {
     font-size: 1em;
   }
