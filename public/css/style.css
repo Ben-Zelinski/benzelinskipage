@@ -649,6 +649,10 @@ footer {
     font-size: 1.8em;
   }
 
+  .italic {
+    font-size: 1em;
+  }
+
   .arrow .white-arrow,
   .arrow {
     width: 80px;
