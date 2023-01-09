@@ -434,13 +434,14 @@ footer {
 
   #homepage .info {
     width: 75%;
-    line-height: 1.25em;
+    line-height: 1.3em;
     text-align: center;
   }
 
   #homepage .info h1 {
     font-size: 32px;
     margin-bottom: .5em;
+    padding-top: 15vh;
   }
 
   .project figure {
